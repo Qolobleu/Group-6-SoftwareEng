@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Reservation System</title>
+</head>
+<body>
+    <h1>Railway Reservation System</h1>
+
+    <form>
+        <label for="journey-details">Journey Details:</label>
+        <textarea id="journey-details" name="journey-details" rows="4" cols="50" required></textarea>
+
+        <label for="passenger-name">Passenger Name:</label>
+        <input type="text" id="passenger-name" name="passenger-name" required>
+
+        <label for="seat-availability">Seat Availability:</label>
+        <input type="checkbox" id="seat-availability" name="seat-availability">
+        
+        <button type="button" onclick="checkAvailability()">Check Availability</button>
+    </form>
+
+    <div id="booking-details">
+        <h2>Booking Details</h2>
+        <p id="availability-message"></p>
+        <p id="booking-statement"></p>
+    </div>
+
+    <div id="cash-statement">
+        <h2>Cash Statement</h2>
+        <p id="cash-amount"></p>
+    </div>
+
+    <script>
+        function checkAvailability() {
+            // In a real system, you would check the availability of seats here.
+            // For the prototype, we'll assume a simple check based on the checkbox.
+
+            const isAvailable = document.getElementById('seat-availability').checked;
+            const passengerName = document.getElementById('passenger-name').value;
+            const journeyDetails = document.getElementById('journey-details').value;
+
+            if (isAvailable) {
+                const bookingStatement = `Booking confirmed for ${passengerName}. Journey details: ${journeyDetails}`;
+                const cashAmount = "Cash received for the booking.";
+
+                document.getElementById('availability-message').textContent = 'Seat is available!';
+                document.getElementById('booking-statement').textContent = bookingStatement;
+                document.getElementById('cash-amount').textContent = cashAmount;
+            } else {
+                document.getElementById('availability-message').textContent = 'Seat is not available!';
+                document.getElementById('booking-statement').textContent = '';
+                document.getElementById('cash-amount').textContent = '';
+            }
+        }
+    </script>
+</body>
+</html>
